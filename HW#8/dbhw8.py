@@ -124,7 +124,7 @@ while True:
     else:
         break
 
-    conn.close()#접속 종료
+conn.close()#접속 종료
 
 
 

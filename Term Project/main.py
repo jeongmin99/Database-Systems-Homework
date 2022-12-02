@@ -15,7 +15,9 @@ charge_warn=uic.loadUiType("chargewarn.ui")[0]
 already_warn=uic.loadUiType("alreadywarn.ui")[0]
 sign_class=uic.loadUiType("signclass.ui")[0]
 same_id=uic.loadUiType("sameid.ui")[0]
-
+sign_warn=uic.loadUiType("signwarn.ui")[0]
+login_fail=uic.loadUiType("loginfail.ui")[0]
+user_info=uic.loadUiType("userinfo.ui")[0]
 
 conn = mysql.connector.connect( #접속 정보
             host="192.168.56.101",#ip
@@ -286,18 +288,43 @@ class UserMenu(QDialog,QWidget,user_menu):
 
         self.find.clicked.connect(self.findGame)
         #self.recommand.clicked.connect(self.recommandGame)
-        #self.info.clicked.connect(self.info)
+        self.info.clicked.connect(self.infod)
 
     def findGame(self):
-        self.hide()
         self.gamelist=GameList()
         self.gamelist.exec()
     
     def recommandGame(self):
         pass
 
-    def info(self):
-        pass
+    def infod(self):
+        self.info=UserInfo()
+        self.info.exec()
+
+class UserInfo(QDialog,QWidget,user_info):
+    def __init__(self) :
+        super(UserInfo,self).__init__()
+        self.setupUi(self)
+
+        self.idtext.setText(user.id)
+        self.typetext.setText(user.type)
+        self.nametext.setText(user.name)
+        self.agetext.setText(str(user.age))
+        self.chargetext.setText(str(user.charge))
+        self.mod.clicked.connect(self.modify)
+    
+    def modify(self):
+        sql="update USER set password=%s and name=%s and age=%s and charge=%s;"
+        val=[self.pwtext.text(),self.nametext.text(),self.agetext.text(),self.chargetext.text()]
+        if '' in val:
+            sw=SignWarn()
+            sw.exec()
+        else:
+            val[2]=int(val[2])
+            val[3]=int(val[3])
+            cur.execute(sql,val)
+            conn.commit()
+        
 
 class signClass(QDialog,QWidget,sign_class):
     def __init__(self) :
@@ -337,15 +364,32 @@ class signClass(QDialog,QWidget,sign_class):
             self.same.exec()
 
         else:
-            sql="insert into USER value (%s,%s,%s,%s,%s,%s,%s)"
-            val=[self.id,self.pw,self.name,self.type,self.gender,int(self.age),int(self.charge)]
-            cur.execute(sql,val)
-            conn.commit()
-            self.hide() 
 
+            sql="insert into USER value (%s,%s,%s,%s,%s,%s,%s)"
+            val=[self.id,self.pw,self.name,self.type,self.gender,self.age,self.charge]
+            if '' in val:
+                warn=SignWarn()
+                warn.exec()
+
+            else:
+                val[5]=int(val[5])
+                val[6]=int(val[6])
+                cur.execute(sql,val)
+                conn.commit()
+                self.hide() 
+
+class SignWarn(QDialog,QWidget,sign_warn):
+    def __init__(self) :
+        super(SignWarn,self).__init__()
+        self.setupUi(self)
 class SameId(QDialog,QWidget,same_id):
     def __init__(self) :
         super(SameId,self).__init__()
+        self.setupUi(self)
+
+class loginFail(QDialog,QWidget,login_fail):
+    def __init__(self) :
+        super(loginFail,self).__init__()
         self.setupUi(self)
 
 class WindowClass(QMainWindow, form_class) :
@@ -367,6 +411,7 @@ class WindowClass(QMainWindow, form_class) :
         val=[id,password]
         cur.execute(sql,val)
         result=cur.fetchall()
+
         if result[0][7]==1:
             user = User.User(result[0][0],result[0][1],result[0][2],result[0][3],result[0][4],result[0][5],result[0][6])
             if(user.type=='u'):
@@ -377,7 +422,9 @@ class WindowClass(QMainWindow, form_class) :
                 self.hide()
                 self.managermenu=ManagerMenu()
                 self.managermenu.exec()
-
+        else:
+            loginfail=loginFail()
+            loginfail.exec()
 
         
 

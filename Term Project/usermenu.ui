@@ -26,7 +26,7 @@
     <string>게임 검색하기</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="recommand">
+  <widget class="QPushButton" name="info">
    <property name="geometry">
     <rect>
      <x>260</x>
@@ -39,7 +39,7 @@
     <string>사용자 정보 관리</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="info">
+  <widget class="QPushButton" name="recommand">
    <property name="geometry">
     <rect>
      <x>140</x>

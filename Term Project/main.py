@@ -143,11 +143,6 @@ class GameUpdate(QDialog,QWidget,game_list):
         
         self.table.cellDoubleClicked.connect(lambda: self.gamemod(self.res[self.table.currentRow()][0],self.res[self.table.currentRow()][1],self.res[self.table.currentRow()][2]))
            
-        
-
-        
-        
-
      def gamemod(self,gn,dv,rd):
         gname=gn
         developer=dv

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>424</width>
     <height>300</height>
    </rect>
   </property>
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="find">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>120</y>
+     <x>130</x>
+     <y>80</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QPushButton" name="info">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>120</y>
+     <x>130</x>
+     <y>180</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -39,17 +39,17 @@
     <string>사용자 정보 관리</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="recommand">
+  <widget class="QPushButton" name="check">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>120</y>
+     <x>130</x>
+     <y>130</y>
      <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>게임 추천 받기</string>
+    <string>보유 게임 확인</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -63,6 +63,19 @@
    </property>
    <property name="text">
     <string>일반 사용자 메뉴</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="evaluates">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>230</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>내가 평가한 게임</string>
    </property>
   </widget>
  </widget>

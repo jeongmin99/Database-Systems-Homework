@@ -224,7 +224,7 @@
   <widget class="QPushButton" name="buy">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>160</x>
      <y>510</y>
      <width>121</width>
      <height>31</height>
@@ -237,7 +237,7 @@
   <widget class="QPushButton" name="eval">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>410</x>
      <y>510</y>
      <width>121</width>
      <height>31</height>
@@ -245,19 +245,6 @@
    </property>
    <property name="text">
     <string>평가</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="back">
-   <property name="geometry">
-    <rect>
-     <x>490</x>
-     <y>510</y>
-     <width>121</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>뒤로가기</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -486,7 +473,7 @@
     <rect>
      <x>140</x>
      <y>400</y>
-     <width>131</width>
+     <width>241</width>
      <height>20</height>
     </rect>
    </property>
